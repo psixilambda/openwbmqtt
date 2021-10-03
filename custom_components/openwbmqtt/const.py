@@ -34,6 +34,7 @@ CHARGE_POINTS = "chargepoints"
 DEFAULT_CHARGE_POINTS = 1
 MANUFACTURER = 'openWB'
 MODEL = 'openWB'
+HOUSEBATTERY = false
 
 # Data schema required by configuration flow
 DATA_SCHEMA = vol.Schema(
