@@ -27,6 +27,7 @@ from .const import (
     MQTT_ROOT_TOPIC,
     SENSORS_GLOBAL,
     SENSORS_PER_LP,
+    SENSORS_HOUSEBATTERY,
     openwbSensorEntityDescription,
 )
 
@@ -53,7 +54,14 @@ async def async_setup_entry(
         sensorList.append(
             openwbSensor(uniqueID=integrationUniqueID, description=description)
         )
-
+    # Create all housebattery sensors.
+    housebattery_sensors = copy.deepcopy(SENSORS_HOUSEBATTERY)
+    for description in housebattery_sensors:
+        description.mqttTopic = f"{mqttRoot}/{description.key}"
+        _LOGGER.debug("mqttTopic: %s", description.mqttTopic)
+        sensorList.append(
+            openwbSensor(uniqueID=integrationUniqueID, description=description)
+        )
     # Create all sensors for each charge point, respectively.
     for chargePoint in range(1, nChargePoints + 1):
         local_sensors_per_lp = copy.deepcopy(SENSORS_PER_LP)
