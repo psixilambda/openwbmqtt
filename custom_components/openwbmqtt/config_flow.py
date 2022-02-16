@@ -5,6 +5,7 @@ from typing import Any
 
 from homeassistant import config_entries
 from homeassistant.config_entries import ConfigFlow
+from homeassistant.core import callback
 from homeassistant.util import slugify
 
 # Import global values.
