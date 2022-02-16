@@ -33,8 +33,8 @@ class openwbmqttConfigFlow(ConfigFlow, domain=DOMAIN):
             title=title,
             data=user_input,
         )
-    
-    class OpenWBOptionsFlowHandler(config_entries.OptionsFlow):
+
+class OpenWBOptionsFlowHandler(config_entries.OptionsFlow):
     def __init__(self, config_entry):
         """Initialize options flow."""
         self.config_entry = config_entry
