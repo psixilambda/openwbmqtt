@@ -366,3 +366,30 @@ SENSORS_PER_LP = [
         state_class=SensorStateClass.MEASUREMENT,
     ),
 ]
+
+# List of global sensors that are relevant to the house battery
+SENSORS_HOUSEBATTERY = [
+    openwbSensorEntityDescription(
+        key="housebattery/DailyYieldExportKwh",
+        name="HouseBattery_DailyYieldExportKwh",
+        device_class=DEVICE_CLASS_ENERGY,
+        native_unit_of_measurement=ENERGY_KILO_WATT_HOUR,
+        state_class=STATE_CLASS_TOTAL_INCREASING,
+        icon="mdi:battery-50",
+    ),
+    openwbSensorEntityDescription(
+        key="housebattery/DailyYieldImportKwh",
+        name="HouseBattery_DailyYieldImportKwh",
+        device_class=DEVICE_CLASS_ENERGY,
+        native_unit_of_measurement=ENERGY_KILO_WATT_HOUR,
+        state_class=STATE_CLASS_TOTAL_INCREASING,
+        icon="mdi:battery-50",
+    ),
+    openwbSensorEntityDescription(
+        key="housebattery/%Soc",
+        name="HouseBattery_%Soc",
+        device_class=DEVICE_CLASS_BATTERY,
+        native_unit_of_measurement=PERCENTAGE,
+        state_class=STATE_CLASS_MEASUREMENT,
+    ),
+]
