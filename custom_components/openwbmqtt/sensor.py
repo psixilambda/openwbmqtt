@@ -30,6 +30,7 @@ from .const import (
     MQTT_ROOT_TOPIC,
     SENSORS_GLOBAL,
     SENSORS_PER_LP,
+    SENSORS_HOUSEBATTERY,
     openwbSensorEntityDescription,
 )
 
@@ -79,6 +80,15 @@ async def async_setup_entry(
                 )
             )
 
+    # Create all housebattery sensors.
+    housebattery_sensors = copy.deepcopy(SENSORS_HOUSEBATTERY)
+    for description in housebattery_sensors:
+        description.mqttTopic = f"{mqttRoot}/{description.key}"
+        _LOGGER.debug("mqttTopic: %s", description.mqttTopic)
+        sensorList.append(
+            openwbSensor(uniqueID=integrationUniqueID, description=description, confHost=confHost)
+        )
+        
     async_add_entities(sensorList)
 
 
